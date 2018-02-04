@@ -1,0 +1,230 @@
+html{
+  height: 100%;
+  overflow: hidden;
+}
+body{
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width:100vw;
+  background-image: url(http://hajimenokizu.com/anime-cel-background/images/000362_dbizw_9.jpg);
+  background-size:     cover;
+  background-repeat:   no-repeat;
+}
+
+.pokeball{
+  position: absolute;
+  left: 50px;
+  bottom: 50px;
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  -webkit-animation: neon2 1.5s ease-in-out infinite alternate;
+  -moz-animation: neon2 1.5s ease-in-out infinite alternate;
+  animation: neon2 1.5s ease-in-out infinite alternate;
+}
+
+
+
+.bag{
+  margin-bottom: 70px;
+  margin-right: 30px;
+  padding: 15px 5px;
+  border-radius: 10px;
+  background-color: orange;
+  border: 2px solid black;
+  box-shadow: -1px 27px 32px 3px rgba(0,0,0,0.75);
+  float: left;
+}
+
+.bag table{
+  background-color: wheat;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.bag thead{
+  background-color: wheat;
+}
+
+.bag td{
+  padding: 0 10px;
+}
+
+.bag img{
+  height: 94px;
+}
+
+.bag button{
+  border-radius: 3px;
+  padding: 0 10px;
+  color: white;
+}
+
+.bag .edit-Btn{
+  background: yellowgreen;
+}
+.bag .delete-Btn{
+  background: red;
+}
+
+.pokedex{
+  display: flex;
+  flex-direction: column;
+  background-image: url(https://ih1.redbubble.net/image.15731087.9483/flat,800x800,070,f.jpg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 230px;
+  height: 326px;
+  padding: 42px 27px 0 17px;
+  box-sizing: border-box;
+  position: relative;
+  box-shadow: -1px 27px 32px 3px rgba(0,0,0,0.75);
+}
+
+.pokedex .signal{
+  position: absolute;
+  left: 25px;
+  top: 16px;
+  height: 34px;
+  border-radius: 50%;
+  width: 34px;
+  background-color: cornflowerblue;
+  /*box-shadow: 0 0 90px #ff3122, 0 0 100px #FF5722, inset 0 10px 10px 20px #F44336, inset 30px 0 35px 50px #ffffff;*/
+  transition: 1s;
+}
+
+.pokedex .signal button {
+  background: transparent;
+  border: none !important;
+  font-size:0;
+
+  flex-direction:column;
+  flex-wrap:wrap;
+  align-content: flex-start;
+  display: inline;
+
+}
+
+.pokedex .buttons{
+  display: inline-block;
+  margin-left: 9%;
+}
+
+.pokedex button.store-Btn{
+  border-radius: 3px;
+  min-width: 70px;
+  padding: 5px 14px;
+  box-sizing: border-box;
+  margin-left: 5px;
+  margin-bottom: 5px;
+}
+
+.pokedex button.clear-Btn{
+  border-radius: 10px;
+  box-sizing: border-box;
+  color: white;
+  border: 1px solid black;
+  background-color: #bd010e;
+  align-content: center;
+  display: flex;
+  float:right;
+  width: 45%;
+}
+
+.pokedex button.save-Btn{
+  border-radius: 10px;
+  box-sizing: border-box;
+  color: white;
+  border: 1px solid black;
+  background-color: #297e36;
+  margin-bottom: 1px;
+  float: left;
+  width: 45%;
+}
+
+.pokedex .display{
+  position: absolute;
+  height: 200px;
+  width: 200px;
+  right: -199px;
+  background-color: #c10111;
+  border: 2px solid black;
+  box-sizing: border-box;
+  padding: 30px;
+  box-shadow: -1px 27px 32px 3px rgba(0,0,0,0.75);
+
+}
+
+.display .screen{
+  background-color: white;
+  border-radius: 10px;
+  border: 2px solid;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 10px;
+}
+
+.screen img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* form{
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: indianred;
+  margin-bottom: 3px;
+} */
+
+form{
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  padding-top: 20%;
+  margin-left: 9%;
+}
+
+form button{
+  margin: 4px;
+}
+
+form input{
+  margin: 4px;
+}
+
+form .inline-inputs{
+  display: flex;
+}
+
+form .inline-inputs > div{
+  max-width: 42%;
+}
+
+form .inline-inputs > div:first-child{
+  margin-right: 20px;
+}
+
+form .inline-inputs input{
+  width: 100%;
+}
+
+form label{
+  color: white;
+}
+
+red {
+  background-color: red;
+}
+
+
+@-webkit-keyframes neon2 {
+  from { box-shadow:0px 0px 10px 3px #0066cc; }
+  to { box-shadow:0px 0px 20px 5px #0066cc; }
+}

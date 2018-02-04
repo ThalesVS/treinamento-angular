@@ -1,0 +1,65 @@
+
+<div ng-controller="DexCtrl as dex">
+    <div class="bag">
+        <table>
+            <thead>
+                <tr>
+                    <td>Image</td>
+                    <td>Spicie</td>
+                    <td>Name</td>
+                    <td>Type</td>
+                    <td>Abilities</td>
+                    <td>Actions</td>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr ng-repeat="pkm in dex.myPkm">
+                    <td>
+                        <img src="{{pkm.image}}" alt="" />
+                    </td>
+                    <td>{{pkm.spicie | uppercase}}</td>
+                    <td ng-hide="pkm.isEdit">{{pkm.nickname | uppercase}}</td>
+                    <td ng-show="pkm.isEdit">
+                            <input type="text" 
+                                placeholder="{{pkm.nickname | uppercase}}" 
+                                ng-model="pkm.nickname"
+                                ng-change="dex.changeName(pkm.nickname, $index)">
+                    </td>
+                    <td>{{pkm.type}}</td>
+                    <td>{{pkm.ability}}</td>
+                    <td>
+                        <button type="button" class="edit-Btn" ng-click="dex.edit($index)">Edit</button>
+                        <button type="button" class="delete-Btn" ng-click="dex.release($index)">Release</button>
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+
+
+
+    <div class="pokedex">
+        <div class="signal">
+            <button type="button" ng-click="dex.searchPkm(true)"> SEARCH</button>
+        </div>
+        <div class="display">
+            <div class="screen">
+                <img src="{{dex.search.image}}">
+            </div>
+        </div>
+        <form name="form" ng-submit="dex.searchPkm()">
+            <input type="text" placeholder="Id" ng-model="dex.search.id" required min="1">
+            <input type="text" placeholder="Name" ng-model="dex.search.spicie"> 
+            <input type="text" placeholder="Nickname" ng-model="dex.search.nickname">
+            <input type="text" placeholder="Type" ng-model="dex.search.type" disabled>
+
+            <button type="submit" class="store-Btn"ng-disabled="form.$invalid" >SEARCH</button>
+        </form>
+        <div class="buttons">
+            <button type="button" class="save-Btn" ng-click="dex.catchPkm(true)">SAVE</button>
+            <button type="button" class="clear-Btn" ng-click="dex.searchClear()">CLEAR</button>
+        </div>
+    </div>
+</div>
