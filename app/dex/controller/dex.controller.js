@@ -17,6 +17,7 @@
     var _range = Math.floor(Math.random() * Math.floor(151));
     var _urlImagePkm = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/";
     var _urlImageExtention = ".png";
+    var _urlImageQuestion = "https://cdn.bulbagarden.net/upload/8/8e/Spr_3r_000.png";
     
     // lista dos seus pkm
     vm.myPkm = [];
@@ -27,7 +28,7 @@
     }
     
     vm.catchPkm = function(){
-      if(vm.myPkm.length != 6){
+      if(vm.myPkm.length != 6 && vm.search.image != _urlImageQuestion){
         vm.myPkm.push({
           id: parseInt(vm.search.id),
           image: vm.search.image,
@@ -64,7 +65,7 @@
             name: "",
             nickname:"",
             type:"Not found",
-            image:"https://cdn.bulbagarden.net/upload/8/8e/Spr_3r_000.png"
+            image: _urlImageQuestion
           }
         }
 
@@ -72,12 +73,12 @@
     }
 
     vm.searchClear = function() {
-      vm.search = {git 
+      vm.search = {
         id: "",
         spicie:"",
         nickname:"",
         type:"",
-        image:"https://cdn.bulbagarden.net/upload/8/8e/Spr_3r_000.png"
+        image:_urlImageQuestion
       }
     }
 
