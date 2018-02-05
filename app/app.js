@@ -1,12 +1,11 @@
 'use strict';
 
-angular.module('myApp', [
+angular.module('app', [
   'ngRoute',
-  'myApp.dex', 
-  'myApp.view2'
+  'app.pokedex'
 ]).
 config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
   // $locationProvider.hashPrefix('!');
 
-  $routeProvider.otherwise({redirectTo: '/dex'});
+  $routeProvider.otherwise({redirectTo: '/pokedex'});
 }]);

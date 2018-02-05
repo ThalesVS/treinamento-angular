@@ -29,7 +29,8 @@
                     <td>{{pkm.type}}</td>
                     <td>{{pkm.ability}}</td>
                     <td>
-                        <button type="button" class="edit-Btn" ng-click="dex.edit($index)">Edit</button>
+                        <button type="button" ng-hide="pkm.isEdit" class="edit-Btn" ng-click="dex.edit($index)">Edit</button>
+                        <button type="button" ng-show="pkm.isEdit" class="edit-Btn" ng-click="dex.edit($index)">Ok</button>
                         <button type="button" class="delete-Btn" ng-click="dex.release($index)">Release</button>
                     </td>
                 </tr>
