@@ -1,0 +1,65 @@
+
+<div ng-controller="PokedexCtrl as pokedexCtrl">
+    <div class="bag">
+        <table>
+            <thead>
+                <tr>
+                    <td>Image</td>
+                    <td>Name</td>
+                    <td>Nickname</td>
+                    <td>Type</td>
+                    <td>Abilities</td>
+                    <td>Actions</td>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr ng-repeat="pkm in pokedexCtrl.myPkm">
+                    <td>
+                        <img src="{{pkm.image}}" alt="" />
+                    </td>
+                    <td>{{pkm.spicie | uppercase}}</td>
+                    <td ng-hide="pkm.isEdit">{{pkm.nickname | uppercase}}</td>
+                    <td ng-show="pkm.isEdit">
+                            <input type="text" 
+                                placeholder="{{pkm.nickname | uppercase}}" 
+                                ng-model="pkm.nickname"
+                                ng-change="pokedexCtrl.changeName(pkm.nickname, $index)">
+                    </td>
+                    <td>{{pkm.type}}</td>
+                    <td>{{pkm.ability}}</td>
+                    <td>
+                        <button type="button" class="edit-Btn" ng-click="pokedexCtrl.edit($index)">Edit</button>
+                        <button type="button" class="delete-Btn" ng-click="pokedexCtrl.release($index)">Release</button>
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+
+
+
+    <div class="pokedex">
+        <div class="signal">
+            <button type="button" ng-click="pokedexCtrl.searchPkm(true)"> SEARCH</button>
+        </div>
+        <div class="display">
+            <div class="screen">
+                <img src="{{pokedexCtrl.search.image}}">
+            </div>
+        </div>
+        <form name="form" ng-submit="pokedexCtrl.searchPkm()">
+            <input type="text" placeholder="Id" ng-model="pokedexCtrl.search.id" required min="1">
+            <input type="text" placeholder="Name" ng-model="pokedexCtrl.search.spicie">
+            <input type="text" placeholder="Nickname" ng-model="pokedexCtrl.search.nickname">
+            <input type="text" placeholder="Type" ng-model="pokedexCtrl.search.type" disabled>
+
+            <button type="submit" class="store-Btn"ng-disabled="form.$invalid" >SEARCH</button>
+        </form>
+        <div class="buttons">
+            <button type="button" class="save-Btn" ng-click="pokedexCtrl.catchPkm(true)">SAVE</button>
+            <button type="button" class="clear-Btn" ng-click="pokedexCtrl.searchClear()">CLEAR</button>
+        </div>
+    </div>
+</div>
