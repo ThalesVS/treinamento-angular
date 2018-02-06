@@ -1,7 +1,7 @@
 (function() {
   'use strict';
 
-  var PokedexCtrl = function($scope, pokedexService, PkmFactory) {
+  var PokedexCtrl = function() {
     
     var vm = this;
     
@@ -20,19 +20,8 @@
     }
     
     vm.catchPkm = function(){
-      if(vm.myPkm.length != 6 && vm.search.image != _urlImageQuestion){
-        vm.myPkm.push({
-          id: parseInt(vm.search.id),
-          image: vm.search.image,
-          spicie: vm.search.spicie,
-          nickname: vm.search.nickname ? vm.search.nickname : vm.search.spicie,
-          type: vm.search.type,
-          ability: vm.search.ability,
-          isEdit: false
-        });
-
+        // implementar função de captura
         vm.searchClear();
-      }
     };
     
     vm.searchPkm = function(lucky){
@@ -44,48 +33,27 @@
           type: "Glitch",
           image: _urlImageMissingNO
         };
-        return;
       }
+      return;
       
-      pokedexService.getPkm(vm.search.id)
-      .then(function(results){
-        vm.search = PkmFactory.searchPkm(results.data, lucky);
-        return;
-      })
-      .catch(function(error){
-        if(error.data.detail === "Not found."){
-          vm.search = {
-            id: "",
-            name: "",
-            nickname:"",
-            type:"Not found",
-            image:_urlImageQuestion
-          }
-        }
+      // implementar função de busca na api
 
-      })
     };
 
     vm.searchClear = function() {
-      vm.search = {
-        id: "",
-        spicie:"",
-        nickname:"",
-        type:"",
-        image:_urlImageQuestion
-      }
+      // implementar função para limpar os campos
     };
 
     vm.release = function(id) {
-      vm.myPkm.splice(id,1);
+      // implementar função para liberar o pokemon
     };
 
     vm.edit = function(id){
-      vm.myPkm[id].isEdit = !vm.myPkm[id].isEdit;
+      // implementar função para troca de flags
     };
 
     vm.changeName = function(name, id){
-      vm.myPkm[id].nickname = name;
+      // implementar função para troca de nome
     };
     
     function _init(){
@@ -96,6 +64,6 @@
   };
 
 
-angular.module('app.pokedex').controller("PokedexCtrl", ["$scope", "pokedexService", "PkmFactory", PokedexCtrl]);
+angular.module('app.pokedex').controller("PokedexCtrl", [PokedexCtrl]);
 
 }());
