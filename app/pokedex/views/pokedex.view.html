@@ -14,7 +14,7 @@
             </thead>
 
             <tbody>
-                <tr ng-repeat="pkm in pokedexCtrl.myPkm">
+                <tr ng-repeat="pkm in pokedexCtrl.myPkm track by $index">
                     <td>
                         <img src="{{pkm.image}}" alt="" />
                     </td>
@@ -51,11 +51,11 @@
         </div>
         <form name="form" ng-submit="pokedexCtrl.searchPkm()">
             <input type="text" placeholder="Id" ng-model="pokedexCtrl.search.id" required min="1">
-            <input type="text" placeholder="Name" ng-model="pokedexCtrl.search.spicie">
-            <input type="text" placeholder="Nickname" ng-model="pokedexCtrl.search.nickname">
+            <input type="text" placeholder="Name" ng-model="pokedexCtrl.search.spicie" disabled>
+            <input type="text" placeholder="Nickname" ng-model="pokedexCtrl.search.nickname" >
             <input type="text" placeholder="Type" ng-model="pokedexCtrl.search.type" disabled>
 
-            <button type="submit" class="store-Btn"ng-disabled="form.$invalid" >SEARCH</button>
+            <button type="submit" class="store-Btn"ng-disabled="form.$invalid" ng-click="pokedexCtrl.searchPkm()" >SEARCH</button>
         </form>
         <div class="buttons">
             <button type="button" class="save-Btn" ng-click="pokedexCtrl.catchPkm(true)">SAVE</button>

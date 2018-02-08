@@ -1,11 +1,10 @@
 (function() {
   'use strict';
 
-  var PokedexCtrl = function() {
+  var PokedexCtrl = function(pokedexService, PkmFactory) {
     
     var vm = this;
     
-    var _range = Math.floor(Math.random() * Math.floor(151));
     var _urlImagePkm = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/";
     var _urlImageExtention = ".png";
     var _urlImageQuestion = "https://cdn.bulbagarden.net/upload/8/8e/Spr_3r_000.png";
@@ -20,40 +19,46 @@
     }
     
     vm.catchPkm = function(){
-        // implementar função de captura
-        vm.searchClear();
+      if(vm.search.id === undefined || 
+         isNaN(vm.search.id) ||
+         (vm.search.spicie === undefined || vm.search.spicie === "")) {
+        return;
+      }
+
+      vm.search.isEdit = false;
+      if(vm.search.nickname == "" || vm.search.nickname == undefined){
+        vm.search.nickname = vm.search.spicie;
+      }
+      
+      vm.myPkm.push(vm.search)
+      vm.searchClear();
     };
     
     vm.searchPkm = function(lucky){
-      if(vm.search.id === "" || vm.search.id === "?" ) {
-        vm.search = {
-          id: "?",
-          spicie: "MissingNo",
-          nickname: "Bug",
-          type: "Glitch",
-          image: _urlImageMissingNO
-        };
+      if(vm.search.id === "?" ) {
+        vm.search = PkmFactory.glitch();
       }
-      return;
       
-      // implementar função de busca na api
-
+      pokedexService.getPkm(vm.search.id)
+      .then(function(result){
+        vm.search = PkmFactory.makePkm(result);
+      })
+      .catch(function(err){
+        vm.search = PkmFactory.errorPkm(result);
+      })
+      return;
     };
 
     vm.searchClear = function() {
-      // implementar função para limpar os campos
+      vm.search = {};
     };
 
     vm.release = function(id) {
-      // implementar função para liberar o pokemon
+      vm.myPkm.splice(id,1);
     };
 
     vm.edit = function(id){
-      // implementar função para troca de flags
-    };
-
-    vm.changeName = function(name, id){
-      // implementar função para troca de nome
+      vm.myPkm[id].isEdit = !vm.myPkm[id].isEdit;
     };
     
     function _init(){
@@ -64,6 +69,6 @@
   };
 
 
-angular.module('app.pokedex').controller("PokedexCtrl", [PokedexCtrl]);
+angular.module('app.pokedex').controller("PokedexCtrl", ["pokedexService", "PkmFactory", PokedexCtrl]);
 
 }());
