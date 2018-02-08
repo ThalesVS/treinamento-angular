@@ -1,7 +1,7 @@
 (function() {
   'use strict';
 
-  var PokedexCtrl = function(pokedexService, PkmFactory) {
+  var PokedexCtrl = function(pokedexService, PkmFactory, $location) {
     
     var vm = this;
     
@@ -64,11 +64,16 @@
     function _init(){
       vm.searchClear();
     }
+
+    vm.changeView = function (id){
+      pokedexService.myPkm.set(vm.myPkm);
+      $location.path("/status/"+id);
+    }
     
     _init();
   };
 
 
-angular.module('app.pokedex').controller("PokedexCtrl", ["pokedexService", "PkmFactory", PokedexCtrl]);
+angular.module('app.pokedex').controller("PokedexCtrl", ["pokedexService", "PkmFactory", "$location", PokedexCtrl]);
 
 }());

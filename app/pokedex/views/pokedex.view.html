@@ -16,7 +16,7 @@
             <tbody>
                 <tr ng-repeat="pkm in pokedexCtrl.myPkm track by $index">
                     <td>
-                        <img src="{{pkm.image}}" alt="" />
+                        <img src="{{pkm.image}}" ng-click="pokedexCtrl.changeView($index)" />
                     </td>
                     <td>{{pkm.spicie | uppercase}}</td>
                     <td ng-hide="pkm.isEdit">{{pkm.nickname | uppercase}}</td>
