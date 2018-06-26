@@ -41,7 +41,7 @@
       
       pokedexService.getPkm(vm.search.id)
       .then(function(result){
-        vm.search = PkmFactory.makePkm(result);
+        vm.search = PkmFactory.makePkm(result, lucky);
       })
       .catch(function(err){
         vm.search = PkmFactory.errorPkm(result);
